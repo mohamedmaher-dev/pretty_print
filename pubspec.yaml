@@ -1,0 +1,20 @@
+name: pretty_print
+description: A beautiful and customizable Dart library for printing colored and styled text to the terminal using ANSI escape codes. Perfect for CLI applications and debugging.
+version: 1.0.0
+homepage: https://github.com/mohamedmaher-dev/pretty_print
+repository: https://github.com/mohamedmaher-dev/pretty_print
+issue_tracker: https://github.com/mohamedmaher-dev/pretty_print/issues
+
+topics:
+  - terminal
+  - console
+  - color
+  - ansi
+  - print
+
+environment:
+  sdk: ^3.9.2
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.6
