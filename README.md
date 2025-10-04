@@ -7,17 +7,9 @@ A beautiful and customizable Dart library for printing colored and styled text t
 
 ## 🖼️ Visual Showcase
 
-### 🎨 Colors & Text Styling
-
-![Colors and Styling](assets/basic_styling.png)
-
-### 📋 Status Messages & Extensions
-
-![Status Messages](assets/advanced_formatting.png)
-
-### 🎭 Advanced Formatting & Effects
-
-![Advanced Effects](assets/professional_output.png)
+|            🎨 Colors & Text Styling             |          📋 Status Messages & Extensions           |          🎭 Advanced Formatting & Effects           |
+| :---------------------------------------------: | :------------------------------------------------: | :-------------------------------------------------: |
+| ![Colors and Styling](assets/basic_styling.png) | ![Status Messages](assets/advanced_formatting.png) | ![Advanced Effects](assets/professional_output.png) |
 
 > 🚀 **Try it yourself**: Run `dart run example/example.dart` to see all features in action!
 
