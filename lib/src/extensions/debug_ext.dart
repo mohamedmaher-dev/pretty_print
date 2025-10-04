@@ -35,7 +35,10 @@ class DebugGroup implements PrettyPrintExtBase {
     );
   }
 
-  /// Prints the string as a TODO item.
+  /// Prints the string as a development task item.
+  ///
+  /// This method displays the string as a task that needs to be completed,
+  /// formatted with a 📝 icon and yellow styling.
   ///
   /// Example usage:
   /// ```dart
@@ -49,7 +52,10 @@ class DebugGroup implements PrettyPrintExtBase {
     );
   }
 
-  /// Prints the string as a FIXME item.
+  /// Prints the string as a development issue item.
+  ///
+  /// This method displays the string as an issue that needs immediate attention,
+  /// formatted with a 🔧 icon and red styling.
   ///
   /// Example usage:
   /// ```dart
