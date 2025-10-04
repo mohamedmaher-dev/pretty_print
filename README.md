@@ -383,7 +383,3 @@ Check out my other packages:
 ---
 
 Made with ❤️ by Mohamed Maher
-
-```
-
-```
