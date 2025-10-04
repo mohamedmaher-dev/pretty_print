@@ -5,12 +5,29 @@
 
 A beautiful and customizable Dart library for printing colored and styled text to the terminal using ANSI escape codes. Perfect for CLI applications, debugging, and adding visual flair to your console output!
 
+## 🖼️ Visual Showcase
+
+### 🎨 Colors & Text Styling
+
+![Colors and Styling](assets/Screenshot%20from%202025-10-04%2014-52-24.png)
+
+### 📋 Status Messages & Extensions
+
+![Status Messages](assets/Screenshot%20from%202025-10-04%2014-52-34.png)
+
+### 🎭 Advanced Formatting & Effects
+
+![Advanced Effects](assets/Screenshot%20from%202025-10-04%2014-52-48.png)
+
+> 🚀 **Try it yourself**: Run `dart run example/example.dart` to see all features in action!
+
 ## ✨ Features
 
 - 🎨 **8 Beautiful Colors**: Black, Red, Green, Yellow, Blue, Magenta, Cyan, White
 - 🖼️ **Background Colors**: Apply any color as background
 - 🎭 **Text Styling**: Bold, Italic, Underline, Strikethrough
 - ✨ **Special Effects**: Blinking animations, opacity control, hidden text
+- 🔗 **75+ Extension Methods**: Organized into 5 categories (Logging, Styling, Colors, Formatting, Debug)
 - 🚀 **Easy to Use**: Simple, intuitive API with sensible defaults
 - 🌐 **Cross-Platform**: Works on Windows, macOS, and Linux terminals
 - 📦 **Zero Dependencies**: Lightweight and fast
@@ -42,87 +59,178 @@ import 'package:pretty_print/pretty_print.dart';
 ### Basic Examples
 
 ```dart
-// Simple colored text
-PrettyPrint.pprint("Hello World!", textColor: PrintColor.green);
+// Traditional method
+PrettyPrint.log("Hello World!", textColor: PrintColor.green);
+PrettyPrint.log("Important!", textWeight: TextWeight.bold);
 
-// Bold text
-PrettyPrint.pprint("Important!", textWeight: TextWeight.bold);
-
-// Text with background color
-PrettyPrint.pprint(" SUCCESS ",
-  textColor: PrintColor.white,
-  backColor: PrintColor.green
-);
+// Extension methods (recommended!)
+"Success message".successLog();        // ✓ SUCCESS + green text
+"Error occurred".errorLog();           // ✗ ERROR + red text
+"Bold text".bold(PrintColor.red);      // Bold red text
+"Important notice".box();              // Boxed text
 ```
 
-### Advanced Styling
+### 🔗 Extension Methods Showcase
+
+```dart
+// Logging extensions
+"Database connected".successLog();
+"Loading configuration".infoLog();
+"Deprecated method".warningLog();
+"Connection failed".errorLog();
+"Debug information".debugLog();
+
+// Styling extensions
+"Bold text".bold();
+"Italic text".italic();
+"Underlined text".underline();
+"Blinking text".blink();
+
+// Color extensions
+"Red text".red();
+"Green text".green();
+" Alert ".onRed();                     // Red background
+"Bold blue text".boldBlue();
+
+// Formatting extensions
+"Application Title".header();
+"Important message".box();
+"Critical alert".doubleBox();
+"First item".bullet();
+"Step 1".numbered(1);
+
+// Debug extensions
+"Fix this bug".todo();                 // 📝 TODO
+"Memory usage: 256MB".memory();        // 💾 MEMORY
+"API took 89ms".benchmark();           // ⏱️ PERF
+"userId".variable("12345");            // 🔢 Variable
+```
+
+## 🎨 Advanced Usage
+
+### Traditional Method
 
 ```dart
 // Combine multiple styles
-PrettyPrint.pprint("Warning!",
+PrettyPrint.log("Warning!",
   textColor: PrintColor.yellow,
   textWeight: TextWeight.bold,
   textUnderline: TextUnderLine.underline
 );
 
 // Animated text
-PrettyPrint.pprint("Loading...",
+PrettyPrint.log("Loading...",
   textColor: PrintColor.cyan,
-  textAlphaAnim: AlphaAndAnim.slowAnim
-);
-
-// Italic text with background
-PrettyPrint.pprint("Stylish text",
-  textColor: PrintColor.white,
-  backColor: PrintColor.magenta,
-  textItalic: TextItalic.italic
+  textBlink: TextBlink.slowBlink
 );
 ```
 
-### Common Use Cases
-
-#### Success/Error Messages
+### Extension Method Combinations
 
 ```dart
-// Success message
-PrettyPrint.pprint(" ✓ SUCCESS ",
-  textColor: PrintColor.white,
-  backColor: PrintColor.green,
-  textWeight: TextWeight.bold
-);
+// Chain multiple effects
+"Critical Alert!".onRed().bold().blink();
 
-// Error message
-PrettyPrint.pprint(" ✗ ERROR ",
-  textColor: PrintColor.white,
-  backColor: PrintColor.red,
-  textWeight: TextWeight.bold
-);
-
-// Warning message
-PrettyPrint.pprint(" ⚠ WARNING ",
-  textColor: PrintColor.black,
-  backColor: PrintColor.yellow,
-  textWeight: TextWeight.bold
-);
+// Professional output
+"System Status Report".header();
+"CPU Usage: 45%".benchmark();
+"Memory: 256MB".memory();
+"All systems operational".successLog();
 ```
 
-#### Progress Indicators
+## 🚀 Common Use Cases
+
+### Status Messages (Quick & Easy!)
 
 ```dart
-// Loading with animation
-PrettyPrint.pprint("🔄 Loading...",
-  textColor: PrintColor.cyan,
-  textAlphaAnim: AlphaAndAnim.slowAnim
-);
-
-// Completed task
-PrettyPrint.pprint("✅ Task completed",
-  textColor: PrintColor.green,
-  textDone: TextDone.done  // Strikethrough
-);
+// Using extension methods (recommended)
+"Operation completed successfully".successLog();
+"Loading user preferences".infoLog();
+"API endpoint deprecated".warningLog();
+"Connection failed".errorLog();
+"System debug info".debugLog();
 ```
 
-#### Debug Information
+### CLI Applications
+
+```dart
+"🚀 Application Startup".header();
+"Loading configuration...".infoLog();
+"Database connected".successLog();
+
+"📊 System Status".box();
+"CPU: 45%".benchmark();
+"Memory: 256MB".memory();
+"Connections: 1,247".network();
+```
+
+### Development & Debugging
+
+```dart
+"Add user authentication".todo();
+"Fix memory leak in cache".fixme();
+"Performance looks good".note();
+
+"userId".variable("user_123");
+"isAuthenticated".variable(true);
+"responseTime".variable("89ms");
+```
+
+### Professional Output
+
+```dart
+"Application Report".header();
+"".separator();
+
+"System Metrics".leftAlign(20);
+"Status: Online".rightAlign(15, PrintColor.green);
+
+"Last Updated".leftAlign(20);
+DateTime.now().toString().rightAlign(25, PrintColor.cyan);
+```
+
+## 📚 API Reference
+
+### 🎨 Available Colors
+
+- `PrintColor.black`, `PrintColor.red`, `PrintColor.green`, `PrintColor.yellow`
+- `PrintColor.blue`, `PrintColor.magenta`, `PrintColor.cyan`, `PrintColor.white`
+
+### 🎭 Text Styling Options
+
+- `TextWeight.bold` / `TextWeight.normal`
+- `TextItalic.italic` / `TextItalic.none`
+- `TextUnderLine.underline` / `TextUnderLine.none`
+- `TextThroughLine.lineThrough` / `TextThroughLine.none`
+
+### ✨ Special Effects
+
+- `TextBlink.slowBlink` - Slow blinking animation
+- `TextBlink.fastBlink` - Fast blinking animation
+- `TextBlink.semiOpacity` - Semi-transparent text
+- `TextBlink.hide` - Hidden text
+
+### 🔗 Extension Categories (75+ Methods)
+
+#### 📋 Logging (8 methods)
+
+`successLog()`, `infoLog()`, `warningLog()`, `errorLog()`, `debugLog()`, `criticalLog()`, `traceLog()`, `performanceLog()`
+
+#### 🎨 Styling (12 methods)
+
+`bold()`, `italic()`, `underline()`, `lineThrough()`, `blink()`, `fastBlink()`, `dim()`, `hide()`, `boldUnderline()`, `italicUnderline()`, `allEffects()`
+
+#### 🌈 Colors (25+ methods)
+
+`red()`, `green()`, `blue()`, `onRed()`, `onGreen()`, `boldRed()`, `boldGreen()`, `rainbow()`, etc.
+
+#### 📐 Formatting (16 methods)
+
+`header()`, `box()`, `doubleBox()`, `separator()`, `leftAlign()`, `center()`, `bullet()`, `numbered()`, `indent()`, `quote()`, `code()`, etc.
+
+#### 🐛 Debug (16 methods)
+
+`todo()`, `fixme()`, `note()`, `debugPrint()`, `inspect()`, `variable()`, `benchmark()`, `memory()`, `network()`, `security()`, etc.
 
 ```dart
 // Debug info
@@ -138,7 +246,7 @@ PrettyPrint.pprint("[INFO]",
 
 // Hidden sensitive data
 PrettyPrint.pprint("Secret: password123",
-  textAlphaAnim: AlphaAndAnim.hide
+  textBlink: TextBlink.hide
 );
 ```
 
@@ -166,15 +274,15 @@ PrettyPrint.pprint("Secret: password123",
 
 - `TextItalic.italic` / `TextItalic.none`
 - `TextUnderLine.underline` / `TextUnderLine.none`
-- `TextDone.done` (strikethrough) / `TextDone.none`
+- `TextThroughLine.lineThrough` (strikethrough) / `TextThroughLine.none`
 
-### Special Effects (`AlphaAndAnim`)
+### Blinking and Opacity Effects (`TextBlink`)
 
-- `AlphaAndAnim.semiOpacity` - Semi-transparent text
-- `AlphaAndAnim.hide` - Hidden text
-- `AlphaAndAnim.slowAnim` - Slow blinking
-- `AlphaAndAnim.fastAnim` - Fast blinking
-- `AlphaAndAnim.none` (default)
+- `TextBlink.semiOpacity` - Semi-transparent text
+- `TextBlink.hide` - Hidden text
+- `TextBlink.slowBlink` - Slow blinking
+- `TextBlink.fastBlink` - Fast blinking
+- `TextBlink.none` (default)
 
 ## 🎯 Complete Example
 
@@ -204,8 +312,8 @@ void main() {
 
   // Effects demonstration
   print("\n🎭 Effects:");
-  PrettyPrint.pprint("Blinking text", textAlphaAnim: AlphaAndAnim.slowAnim);
-  PrettyPrint.pprint("Semi-transparent", textAlphaAnim: AlphaAndAnim.semiOpacity);
+  PrettyPrint.log("Blinking text", textBlink: TextBlink.slowBlink);
+  PrettyPrint.log("Semi-transparent", textBlink: TextBlink.semiOpacity);
 
   // Status messages
   print("\n📋 Status Messages:");
@@ -275,3 +383,7 @@ Check out my other packages:
 ---
 
 Made with ❤️ by Mohamed Maher
+
+```
+
+```

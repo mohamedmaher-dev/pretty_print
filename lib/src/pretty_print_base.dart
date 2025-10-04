@@ -22,23 +22,23 @@ class PrettyPrint {
   /// Example usage:
   /// ```dart
   /// // Simple colored text
-  /// PrettyPrint.pprint("Hello!", textColor: PrintColor.red);
+  /// PrettyPrint.log("Hello!", textColor: PrintColor.red);
   ///
   /// // Bold white text on green background
-  /// PrettyPrint.pprint(
+  /// PrettyPrint.log(
   ///   " SUCCESS ",
   ///   textColor: PrintColor.white,
   ///   backColor: PrintColor.green,
   ///   textWeight: TextWeight.bold,
   /// );
   ///
-  /// // Italic underlined text with animation
-  /// PrettyPrint.pprint(
+  /// // Italic underlined text with blinking
+  /// PrettyPrint.log(
   ///   "Loading...",
   ///   textColor: PrintColor.yellow,
   ///   textItalic: TextItalic.italic,
   ///   textUnderline: TextUnderLine.underline,
-  ///   textAlphaAnim: AlphaAndAnim.slowAnim,
+  ///   textBlink: TextBlink.slowBlink,
   /// );
   /// ```
   ///
@@ -48,17 +48,17 @@ class PrettyPrint {
   /// - [backColor]: The background color (default: none)
   /// - [textItalic]: Whether to make text italic (default: none)
   /// - [textUnderline]: Whether to underline text (default: none)
-  /// - [textDone]: Whether to add strikethrough effect (default: none)
-  /// - [textAlphaAnim]: Animation and opacity effects (default: none)
+  /// - [textThroughLine]: Whether to add strikethrough effect (default: none)
+  /// - [textBlink]: Blinking and opacity effects (default: none)
   /// - [textWeight]: Text weight (normal or bold) (default: none)
-  static void pprint(
+  static void log(
     String msg, {
     PrintColor textColor = PrintColor.none,
     PrintColor backColor = PrintColor.none,
     TextItalic textItalic = TextItalic.none,
     TextUnderLine textUnderline = TextUnderLine.none,
-    TextDone textDone = TextDone.none,
-    AlphaAndAnim textAlphaAnim = AlphaAndAnim.none,
+    TextThroughLine textThroughLine = TextThroughLine.none,
+    TextBlink textBlink = TextBlink.none,
     TextWeight textWeight = TextWeight.none,
   }) {
     String printCode = _getPrintCode(
@@ -67,8 +67,8 @@ class PrettyPrint {
       backColor: backColor.value,
       textItalic: textItalic.value,
       textUnderline: textUnderline.value,
-      textDone: textDone.value,
-      textAlphaAnim: textAlphaAnim.value,
+      textThroughLine: textThroughLine.value,
+      textBlink: textBlink.value,
       textWeight: textWeight.value,
     );
     print(printCode);
@@ -88,8 +88,8 @@ class PrettyPrint {
   /// - [backColor]: ANSI code for background color
   /// - [textItalic]: ANSI code for italic formatting
   /// - [textUnderline]: ANSI code for underline formatting
-  /// - [textDone]: ANSI code for strikethrough formatting
-  /// - [textAlphaAnim]: ANSI code for opacity and animation effects
+  /// - [textThroughLine]: ANSI code for strikethrough formatting
+  /// - [textBlink]: ANSI code for blinking and opacity effects
   /// - [textWeight]: ANSI code for text weight (bold)
   ///
   /// Returns a complete ANSI escape sequence string ready for terminal output.
@@ -99,8 +99,8 @@ class PrettyPrint {
     required String backColor,
     required String textItalic,
     required String textUnderline,
-    required String textDone,
-    required String textAlphaAnim,
+    required String textThroughLine,
+    required String textBlink,
     required String textWeight,
   }) {
     // Prepend 'm' to the message for ANSI formatting
@@ -112,7 +112,7 @@ class PrettyPrint {
 
     // Combine all formatting codes into a complete ANSI escape sequence
     String printCode =
-        '$baseLeading$textWeight$textItalic$textUnderline$textDone$textAlphaAnim$textColor$backColor$msg$baseTrailing';
+        '$baseLeading$textWeight$textItalic$textUnderline$textThroughLine$textBlink$textColor$backColor$msg$baseTrailing';
     return printCode;
   }
 }

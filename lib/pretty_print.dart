@@ -16,19 +16,25 @@
 /// import 'package:pretty_print/pretty_print.dart';
 ///
 /// // Simple colored text
-/// PrettyPrint.pprint(
+/// PrettyPrint.log(
 ///   "Hello World!",
 ///   textColor: PrintColor.green,
 ///   textWeight: TextWeight.bold,
 /// );
 ///
 /// // Text with background color and styling
-/// PrettyPrint.pprint(
+/// PrettyPrint.log(
 ///   " SUCCESS ",
 ///   textColor: PrintColor.white,
 ///   backColor: PrintColor.green,
 ///   textWeight: TextWeight.bold,
 /// );
+///
+/// // Convenient status methods
+/// PrettyPrint.success("Operation completed successfully!");
+/// PrettyPrint.info("Application started");
+/// PrettyPrint.warning("This feature is deprecated");
+/// PrettyPrint.error("Failed to connect to database");
 /// ```
 library;
 
@@ -41,3 +47,10 @@ export 'src/enums/text_styles.dart';
 
 /// Constants used throughout the package
 export 'src/consts.dart';
+
+/// Extensions for string methods organized by category
+export 'src/extensions/string_logging_ext.dart';
+export 'src/extensions/string_styling_ext.dart';
+export 'src/extensions/string_colors_ext.dart';
+export 'src/extensions/string_formatting_ext.dart';
+export 'src/extensions/string_debug_ext.dart';

@@ -11,7 +11,7 @@ import '../consts.dart';
 ///
 /// Example:
 /// ```dart
-/// PrettyPrint.pprint("Bold text", textWeight: TextWeight.bold);
+/// PrettyPrint.log("Bold text", textWeight: TextWeight.bold);
 /// ```
 enum TextWeight {
   /// Normal text weight (ANSI code 0)
@@ -30,23 +30,23 @@ enum TextWeight {
   const TextWeight({required this.value});
 }
 
-/// Enum defining opacity and animation effects for terminal output.
+/// Enum defining text blinking and opacity effects for terminal output.
 ///
-/// Provides various visual effects including opacity changes and animations
+/// Provides various visual effects including opacity changes and blinking animations
 /// using ANSI escape codes.
 ///
 /// Available effects:
 /// - [semiOpacity]: Semi-transparent text (ANSI code 2)
 /// - [hide]: Hidden/invisible text (ANSI code 8)
-/// - [slowAnim]: Slow blinking animation (ANSI code 5)
-/// - [fastAnim]: Fast blinking animation (ANSI code 6)
+/// - [slowBlink]: Slow blinking animation (ANSI code 5)
+/// - [fastBlink]: Fast blinking animation (ANSI code 6)
 /// - [none]: No opacity or animation effects (default)
 ///
 /// Example:
 /// ```dart
-/// PrettyPrint.pprint("Blinking text", textAlphaAnim: AlphaAndAnim.slowAnim);
+/// PrettyPrint.log("Blinking text", textBlink: TextBlink.slowBlink);
 /// ```
-enum AlphaAndAnim {
+enum TextBlink {
   /// Semi-transparent text (ANSI code 2)
   semiOpacity(value: "2;"),
 
@@ -54,10 +54,10 @@ enum AlphaAndAnim {
   hide(value: "8;"),
 
   /// Slow blinking animation (ANSI code 5)
-  slowAnim(value: "5;"),
+  slowBlink(value: "5;"),
 
   /// Fast blinking animation (ANSI code 6)
-  fastAnim(value: "6;"),
+  fastBlink(value: "6;"),
 
   /// No opacity or animation effects (default)
   none(value: noneValue);
@@ -65,8 +65,8 @@ enum AlphaAndAnim {
   /// The ANSI escape code value for this effect
   final String value;
 
-  /// Creates an [AlphaAndAnim] with the specified ANSI [value]
-  const AlphaAndAnim({required this.value});
+  /// Creates a [TextBlink] with the specified ANSI [value]
+  const TextBlink({required this.value});
 }
 
 /// Enum defining italic text styling for terminal output.
@@ -79,7 +79,7 @@ enum AlphaAndAnim {
 ///
 /// Example:
 /// ```dart
-/// PrettyPrint.pprint("Italic text", textItalic: TextItalic.italic);
+/// PrettyPrint.log("Italic text", textItalic: TextItalic.italic);
 /// ```
 enum TextItalic {
   /// Italic text style (ANSI code 3)
@@ -105,7 +105,7 @@ enum TextItalic {
 ///
 /// Example:
 /// ```dart
-/// PrettyPrint.pprint("Underlined text", textUnderline: TextUnderLine.underline);
+/// PrettyPrint.log("Underlined text", textUnderline: TextUnderLine.underline);
 /// ```
 enum TextUnderLine {
   /// Underlined text (ANSI code 4)
@@ -121,21 +121,21 @@ enum TextUnderLine {
   const TextUnderLine({required this.value});
 }
 
-/// Enum defining strikethrough text styling for terminal output.
+/// Enum defining line-through (strikethrough) text styling for terminal output.
 ///
 /// Controls whether text appears with strikethrough decoration using ANSI escape codes.
 ///
 /// Available options:
-/// - [done]: Strikethrough text decoration (ANSI code 9)
+/// - [lineThrough]: Strikethrough text decoration (ANSI code 9)
 /// - [none]: No strikethrough decoration (default)
 ///
 /// Example:
 /// ```dart
-/// PrettyPrint.pprint("Crossed out text", textDone: TextDone.done);
+/// PrettyPrint.log("Crossed out text", textThroughLine: TextThroughLine.lineThrough);
 /// ```
-enum TextDone {
+enum TextThroughLine {
   /// Strikethrough text decoration (ANSI code 9)
-  done(value: "9;"),
+  lineThrough(value: "9;"),
 
   /// No strikethrough decoration (default)
   none(value: noneValue);
@@ -143,6 +143,6 @@ enum TextDone {
   /// The ANSI escape code value for this strikethrough style
   final String value;
 
-  /// Creates a [TextDone] with the specified ANSI [value]
-  const TextDone({required this.value});
+  /// Creates a [TextThroughLine] with the specified ANSI [value]
+  const TextThroughLine({required this.value});
 }

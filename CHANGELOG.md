@@ -5,6 +5,94 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-10-04
+
+### 🚨 BREAKING CHANGES
+
+- **Method Rename**: `PrettyPrint.pprint()` → `PrettyPrint.log()`
+- **Enum Rename**: `AlphaAndAnim` → `TextBlink`
+- **Enum Rename**: `TextDone` → `TextThroughLine`
+- **Parameter Rename**: `textAlphaAnim` → `textBlink`
+- **Parameter Rename**: `textDone` → `textThroughLine`
+- **Removed Static Methods**: `PrettyPrint.success()`, `info()`, `warning()`, `error()` (replaced with string extensions)
+
+### ✨ NEW FEATURES
+
+- **🎯 75+ String Extension Methods**: Comprehensive fluent API for terminal styling
+- **📋 Logging Extensions**: `.successLog()`, `.infoLog()`, `.warningLog()`, `.errorLog()`, `.debugLog()`, `.criticalLog()`, `.traceLog()`, `.performanceLog()`
+- **🎨 Styling Extensions**: `.bold()`, `.italic()`, `.underline()`, `.lineThrough()`, `.blink()`, `.fastBlink()`, `.dim()`, `.hide()`, `.boldUnderline()`, `.italicUnderline()`, `.allEffects()`
+- **🌈 Color Extensions**: `.red()`, `.green()`, `.blue()`, `.onRed()`, `.onGreen()`, `.boldRed()`, `.boldGreen()`, `.rainbow()`, and 25+ more
+- **📐 Formatting Extensions**: `.header()`, `.box()`, `.doubleBox()`, `.separator()`, `.leftAlign()`, `.center()`, `.bullet()`, `.numbered()`, `.indent()`, `.quote()`, `.code()`, and more
+- **🐛 Debug Extensions**: `.todo()`, `.fixme()`, `.note()`, `.debugPrint()`, `.inspect()`, `.variable()`, `.benchmark()`, `.memory()`, `.network()`, `.security()`, and more
+
+### 🏗️ ARCHITECTURE IMPROVEMENTS
+
+- **Modular Extensions**: Split string extensions into categorized files:
+  - `string_logging_ext.dart` - Logging methods (8 methods)
+  - `string_styling_ext.dart` - Text styling (12 methods)
+  - `string_colors_ext.dart` - Color applications (25+ methods)
+  - `string_formatting_ext.dart` - Layout and formatting (16 methods)
+  - `string_debug_ext.dart` - Development and debugging (16 methods)
+
+### 📚 DOCUMENTATION & EXAMPLES
+
+- **Visual Showcase**: Added screenshots in README.md
+- **Consolidated Examples**: Single comprehensive `example/example.dart` file
+- **Enhanced API Reference**: Complete documentation of all 75+ methods
+- **Professional Usage Examples**: Real-world CLI application patterns
+
+### 🔧 TECHNICAL IMPROVEMENTS
+
+- **Better Enum Naming**: More intuitive and consistent enum names
+- **Improved Parameter Names**: Clearer parameter naming conventions
+- **Enhanced Type Safety**: Better type definitions and documentation
+- **Performance Optimizations**: More efficient string processing
+
+### 📦 MIGRATION GUIDE
+
+#### Method Renaming
+
+```dart
+// Old (v1.x)
+PrettyPrint.pprint("Hello", textColor: PrintColor.red);
+
+// New (v2.x)
+PrettyPrint.log("Hello", textColor: PrintColor.red);
+```
+
+#### Enum Renaming
+
+```dart
+// Old (v1.x)
+PrettyPrint.pprint("Text", textAlphaAnim: AlphaAndAnim.slowAnim, textDone: TextDone.done);
+
+// New (v2.x)
+PrettyPrint.log("Text", textBlink: TextBlink.slowBlink, textThroughLine: TextThroughLine.lineThrough);
+```
+
+#### Status Messages
+
+```dart
+// Old (v1.x)
+PrettyPrint.success("Operation completed");
+PrettyPrint.error("Something went wrong");
+
+// New (v2.x) - Use string extensions
+"Operation completed".successLog();
+"Something went wrong".errorLog();
+```
+
+#### Extension Methods (New in v2.x)
+
+```dart
+// Beautiful fluent API
+"Important text".bold().red();
+"Debug info".todo();
+"Server status".header();
+"List item".bullet();
+"Code example".code();
+```
+
 ## [1.0.0] - 2025-09-27
 
 ### Added
@@ -50,4 +138,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This initial release provides a complete, production-ready solution for terminal text formatting in Dart applications.
 
+[2.0.0]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.0.0
 [1.0.0]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v1.0.0
