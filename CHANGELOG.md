@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2025-10-04
+
+### 🔧 FIXES
+
+- **Package Description**: Shortened description to meet pub.dev requirements (60-180 characters)
+- **Screenshot Files**: Renamed screenshot files to follow Dart naming conventions:
+  - `Screenshot from 2025-10-04 14-52-24.png` → `basic_styling.png`
+  - `Screenshot from 2025-10-04 14-52-34.png` → `advanced_formatting.png`
+  - `Screenshot from 2025-10-04 14-52-48.png` → `professional_output.png`
+- **File Conventions**: Updated all file references to use proper naming without spaces
+- **Pub.dev Validation**: Fixed all pub.dev validation issues for successful publishing
+
 ## [2.0.0] - 2025-10-04
 
 ### 🚨 BREAKING CHANGES
@@ -138,5 +150,6 @@ PrettyPrint.error("Something went wrong");
 
 This initial release provides a complete, production-ready solution for terminal text formatting in Dart applications.
 
+[2.0.1]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.0.1
 [2.0.0]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.0.0
 [1.0.0]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v1.0.0
