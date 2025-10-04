@@ -11,13 +11,17 @@ import '../../pretty_print.dart';
 /// import 'package:pretty_print/pretty_print.dart';
 ///
 /// // Text styling
-/// "Bold text".bold();
-/// "Italic text".italic();
-/// "Underlined text".underline();
-/// "Strikethrough text".lineThrough();
-/// "Blinking text".blink();
+/// "Bold text".styling.bold();
+/// "Italic text".styling.italic();
+/// "Underlined text".styling.underline();
+/// "Strikethrough text".styling.lineThrough();
+/// "Blinking text".styling.blink();
 /// ```
-extension StringStylingExt on String {
+class StylingGroup implements PrettyPrintExtBase {
+  @override
+  final String value;
+  const StylingGroup(this.value);
+
   /// Prints the string in bold text.
   ///
   /// Example usage:
@@ -25,7 +29,7 @@ extension StringStylingExt on String {
   /// "Important message".bold();
   /// ```
   void bold([PrintColor color = PrintColor.none]) {
-    PrettyPrint.log(this, textWeight: TextWeight.bold, textColor: color);
+    PrettyPrint.log(value, textWeight: TextWeight.bold, textColor: color);
   }
 
   /// Prints the string in italic text.
@@ -35,7 +39,7 @@ extension StringStylingExt on String {
   /// "Emphasized text".italic();
   /// ```
   void italic([PrintColor color = PrintColor.none]) {
-    PrettyPrint.log(this, textItalic: TextItalic.italic, textColor: color);
+    PrettyPrint.log(value, textItalic: TextItalic.italic, textColor: color);
   }
 
   /// Prints the string with underline decoration.
@@ -46,7 +50,7 @@ extension StringStylingExt on String {
   /// ```
   void underline([PrintColor color = PrintColor.none]) {
     PrettyPrint.log(
-      this,
+      value,
       textUnderline: TextUnderLine.underline,
       textColor: color,
     );
@@ -60,7 +64,7 @@ extension StringStylingExt on String {
   /// ```
   void lineThrough([PrintColor color = PrintColor.none]) {
     PrettyPrint.log(
-      this,
+      value,
       textThroughLine: TextThroughLine.lineThrough,
       textColor: color,
     );
@@ -73,7 +77,7 @@ extension StringStylingExt on String {
   /// "Attention required".blink();
   /// ```
   void blink([PrintColor color = PrintColor.none]) {
-    PrettyPrint.log(this, textBlink: TextBlink.slowBlink, textColor: color);
+    PrettyPrint.log(value, textBlink: TextBlink.slowBlink, textColor: color);
   }
 
   /// Prints the string with fast blinking effect.
@@ -83,7 +87,7 @@ extension StringStylingExt on String {
   /// "Urgent notification".fastBlink();
   /// ```
   void fastBlink([PrintColor color = PrintColor.none]) {
-    PrettyPrint.log(this, textBlink: TextBlink.fastBlink, textColor: color);
+    PrettyPrint.log(value, textBlink: TextBlink.fastBlink, textColor: color);
   }
 
   /// Prints the string with semi-transparent (dim) effect.
@@ -93,7 +97,7 @@ extension StringStylingExt on String {
   /// "Secondary information".dim();
   /// ```
   void dim([PrintColor color = PrintColor.none]) {
-    PrettyPrint.log(this, textBlink: TextBlink.semiOpacity, textColor: color);
+    PrettyPrint.log(value, textBlink: TextBlink.semiOpacity, textColor: color);
   }
 
   /// Hides the string (makes it invisible).
@@ -103,7 +107,7 @@ extension StringStylingExt on String {
   /// "Secret information".hide();
   /// ```
   void hide() {
-    PrettyPrint.log(this, textBlink: TextBlink.hide);
+    PrettyPrint.log(value, textBlink: TextBlink.hide);
   }
 
   /// Prints the string with combined bold and underline styling.
@@ -114,7 +118,7 @@ extension StringStylingExt on String {
   /// ```
   void boldUnderline([PrintColor color = PrintColor.none]) {
     PrettyPrint.log(
-      this,
+      value,
       textWeight: TextWeight.bold,
       textUnderline: TextUnderLine.underline,
       textColor: color,
@@ -129,7 +133,7 @@ extension StringStylingExt on String {
   /// ```
   void italicUnderline([PrintColor color = PrintColor.none]) {
     PrettyPrint.log(
-      this,
+      value,
       textItalic: TextItalic.italic,
       textUnderline: TextUnderLine.underline,
       textColor: color,
@@ -144,7 +148,7 @@ extension StringStylingExt on String {
   /// ```
   void allEffects([PrintColor color = PrintColor.red]) {
     PrettyPrint.log(
-      this,
+      value,
       textWeight: TextWeight.bold,
       textItalic: TextItalic.italic,
       textUnderline: TextUnderLine.underline,

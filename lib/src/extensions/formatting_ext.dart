@@ -11,13 +11,17 @@ import '../../pretty_print.dart';
 /// import 'package:pretty_print/pretty_print.dart';
 ///
 /// // Formatting methods
-/// "Title".header();
-/// "Content".box();
-/// "".separator();
-/// "Left aligned".leftAlign(20);
-/// "Centered".center(20);
+/// "Title".formatting.header();
+/// "Content".formatting.box();
+/// "".formatting.separator();
+/// "Left aligned".formatting.leftAlign(20);
+/// "Centered".formatting.center(20);
 /// ```
-extension StringFormattingExt on String {
+class FormattingGroup implements PrettyPrintExtBase {
+  @override
+  final String value;
+  const FormattingGroup(this.value);
+
   /// Prints the string as a header with decorative borders.
   ///
   /// Example usage:
@@ -25,10 +29,10 @@ extension StringFormattingExt on String {
   /// "Application Title".header();
   /// ```
   void header([PrintColor color = PrintColor.cyan]) {
-    final border = "=" * (length + 4);
+    final border = "=" * (value.length + 4);
     PrettyPrint.log(border, textColor: color, textWeight: TextWeight.bold);
     PrettyPrint.log(
-      "  $this  ",
+      "  $value  ",
       textColor: PrintColor.white,
       backColor: color,
       textWeight: TextWeight.bold,
@@ -43,12 +47,12 @@ extension StringFormattingExt on String {
   /// "Important message".box();
   /// ```
   void box([PrintColor borderColor = PrintColor.white]) {
-    final width = length + 4;
+    final width = value.length + 4;
     final topBorder = "┌${"─" * (width - 2)}┐";
     final bottomBorder = "└${"─" * (width - 2)}┘";
 
     PrettyPrint.log(topBorder, textColor: borderColor);
-    PrettyPrint.log("│ $this │", textColor: borderColor);
+    PrettyPrint.log("│ $value │", textColor: borderColor);
     PrettyPrint.log(bottomBorder, textColor: borderColor);
   }
 
@@ -59,7 +63,7 @@ extension StringFormattingExt on String {
   /// "Critical alert".doubleBox();
   /// ```
   void doubleBox([PrintColor borderColor = PrintColor.red]) {
-    final width = length + 4;
+    final width = value.length + 4;
     final topBorder = "╔${"═" * (width - 2)}╗";
     final bottomBorder = "╚${"═" * (width - 2)}╝";
 
@@ -69,7 +73,7 @@ extension StringFormattingExt on String {
       textWeight: TextWeight.bold,
     );
     PrettyPrint.log(
-      "║ $this ║",
+      "║ $value ║",
       textColor: borderColor,
       textWeight: TextWeight.bold,
     );
@@ -88,13 +92,13 @@ extension StringFormattingExt on String {
   /// "Section Break".separator();
   /// ```
   void separator([PrintColor color = PrintColor.white, int width = 50]) {
-    if (isEmpty) {
+    if (value.isEmpty) {
       PrettyPrint.log("─" * width, textColor: color);
     } else {
-      final padding = (width - length - 2) ~/ 2;
+      final padding = (width - value.length - 2) ~/ 2;
       final leftPad = "─" * padding;
-      final rightPad = "─" * (width - length - 2 - padding);
-      PrettyPrint.log("$leftPad $this $rightPad", textColor: color);
+      final rightPad = "─" * (width - value.length - 2 - padding);
+      PrettyPrint.log("$leftPad $value $rightPad", textColor: color);
     }
   }
 
@@ -105,7 +109,7 @@ extension StringFormattingExt on String {
   /// "Left aligned".leftAlign(20);
   /// ```
   void leftAlign(int width, [PrintColor color = PrintColor.none]) {
-    final padded = padRight(width);
+    final padded = value.padRight(width);
     PrettyPrint.log(padded, textColor: color);
   }
 
@@ -116,7 +120,7 @@ extension StringFormattingExt on String {
   /// "Right aligned".rightAlign(20);
   /// ```
   void rightAlign(int width, [PrintColor color = PrintColor.none]) {
-    final padded = padLeft(width);
+    final padded = value.padLeft(width);
     PrettyPrint.log(padded, textColor: color);
   }
 
@@ -127,15 +131,15 @@ extension StringFormattingExt on String {
   /// "Centered text".center(20);
   /// ```
   void center(int width, [PrintColor color = PrintColor.none]) {
-    if (length >= width) {
-      PrettyPrint.log(this, textColor: color);
+    if (value.length >= width) {
+      PrettyPrint.log(value, textColor: color);
       return;
     }
 
-    final padding = (width - length) ~/ 2;
+    final padding = (width - value.length) ~/ 2;
     final leftPad = " " * padding;
-    final rightPad = " " * (width - length - padding);
-    PrettyPrint.log("$leftPad$this$rightPad", textColor: color);
+    final rightPad = " " * (width - value.length - padding);
+    PrettyPrint.log("$leftPad$value$rightPad", textColor: color);
   }
 
   /// Prints the string as a bullet point.
@@ -146,7 +150,7 @@ extension StringFormattingExt on String {
   /// "Second item".bullet("→");
   /// ```
   void bullet([String bulletChar = "•", PrintColor color = PrintColor.none]) {
-    PrettyPrint.log("$bulletChar $this", textColor: color);
+    PrettyPrint.log("$bulletChar $value", textColor: color);
   }
 
   /// Prints the string as a numbered list item.
@@ -156,7 +160,7 @@ extension StringFormattingExt on String {
   /// "First step".numbered(1);
   /// ```
   void numbered(int number, [PrintColor color = PrintColor.none]) {
-    PrettyPrint.log("$number. $this", textColor: color);
+    PrettyPrint.log("$number. $value", textColor: color);
   }
 
   /// Prints the string with indentation.
@@ -167,7 +171,7 @@ extension StringFormattingExt on String {
   /// ```
   void indent(int spaces, [PrintColor color = PrintColor.none]) {
     final indentation = " " * spaces;
-    PrettyPrint.log("$indentation$this", textColor: color);
+    PrettyPrint.log("$indentation$value", textColor: color);
   }
 
   /// Prints the string as a quote with quotation marks.
@@ -177,7 +181,11 @@ extension StringFormattingExt on String {
   /// "To be or not to be".quote();
   /// ```
   void quote([PrintColor color = PrintColor.cyan]) {
-    PrettyPrint.log('"$this"', textColor: color, textItalic: TextItalic.italic);
+    PrettyPrint.log(
+      '"$value"',
+      textColor: color,
+      textItalic: TextItalic.italic,
+    );
   }
 
   /// Prints the string as a code block with monospace styling.
@@ -187,7 +195,7 @@ extension StringFormattingExt on String {
   /// "console.log('Hello World')".code();
   /// ```
   void code([PrintColor color = PrintColor.green]) {
-    PrettyPrint.log("`$this`", textColor: color, backColor: PrintColor.black);
+    PrettyPrint.log("`$value`", textColor: color, backColor: PrintColor.black);
   }
 
   /// Prints the string with a prefix and custom styling.
@@ -197,7 +205,7 @@ extension StringFormattingExt on String {
   /// "Server started".withPrefix("✓", PrintColor.green);
   /// ```
   void withPrefix(String prefix, [PrintColor color = PrintColor.none]) {
-    PrettyPrint.log("$prefix $this", textColor: color);
+    PrettyPrint.log("$prefix $value", textColor: color);
   }
 
   /// Prints the string with a suffix and custom styling.
@@ -207,6 +215,6 @@ extension StringFormattingExt on String {
   /// "Loading".withSuffix("...", PrintColor.yellow);
   /// ```
   void withSuffix(String suffix, [PrintColor color = PrintColor.none]) {
-    PrettyPrint.log("$this$suffix", textColor: color);
+    PrettyPrint.log("$value$suffix", textColor: color);
   }
 }
