@@ -4,14 +4,19 @@
 /// using ANSI escape codes. Perfect for CLI applications, debugging, and logging.
 ///
 /// ## Features
-/// - 8 different text colors (black, red, green, yellow, blue, magenta, cyan, white)
-/// - 8 different background colors
-/// - Text styling (bold, italic, underline, strikethrough)
-/// - Text effects (blinking animations, opacity)
-/// - Easy-to-use chainable API
-/// - Cross-platform terminal support
+/// - 🎨 **8 Beautiful Colors**: Black, Red, Green, Yellow, Blue, Magenta, Cyan, White
+/// - 🖼️ **Background Colors**: Apply any color as background
+/// - 🎭 **Text Styling**: Bold, Italic, Underline, Strikethrough, Blinking
+/// - 📋 **75+ Extension Methods**: Organized into logical groups for easy discovery
+/// - 🔧 **Grouped API**: Methods organized by category (logging, styling, colors, formatting, debug)
+/// - 📊 **Advanced Formatting**: Boxes, headers, separators, alignment, lists
+/// - 🐛 **Development Tools**: Debugging utilities, variable inspection, performance monitoring
+/// - 🌈 **Special Effects**: Rainbow text, animations, and visual enhancements
+/// - 🚀 **Cross-platform**: Works on all platforms that support ANSI escape codes
 ///
-/// ## Basic Usage
+/// ## Quick Start
+///
+/// ### Basic PrettyPrint.log Usage
 /// ```dart
 /// import 'package:pretty_print/pretty_print.dart';
 ///
@@ -29,13 +34,68 @@
 ///   backColor: PrintColor.green,
 ///   textWeight: TextWeight.bold,
 /// );
-///
-/// // Convenient status methods
-/// PrettyPrint.success("Operation completed successfully!");
-/// PrettyPrint.info("Application started");
-/// PrettyPrint.warning("This feature is deprecated");
-/// PrettyPrint.error("Failed to connect to database");
 /// ```
+///
+/// ### Grouped Extension Methods (Recommended)
+/// ```dart
+/// import 'package:pretty_print/pretty_print.dart';
+///
+/// // Logging methods
+/// "Operation completed successfully!".logging.successLog();
+/// "Application started".logging.infoLog();
+/// "This feature is deprecated".logging.warningLog();
+/// "Failed to connect to database".logging.errorLog();
+///
+/// // Text styling
+/// "Bold text".styling.bold();
+/// "Italic text".styling.italic();
+/// "Underlined text".styling.underline();
+///
+/// // Colors
+/// "Red text".colors.red();
+/// "Green text".colors.green();
+/// "Text on blue background".colors.onBlue();
+///
+/// // Formatting
+/// "Title".formatting.header();
+/// "Content".formatting.box();
+/// "Left aligned text".formatting.leftAlign(30);
+///
+/// // Development & Debugging
+/// "Debug message".debug.debugPrint();
+/// "variable".debug.variable(someValue);
+/// "Performance check".debug.benchmark();
+/// ```
+///
+/// ## Extension Groups
+///
+/// The library organizes methods into logical groups for better discoverability:
+///
+/// - **`.logging`**: Status logging (success, error, info, warning, debug, critical, trace, performance)
+/// - **`.styling`**: Text styling (bold, italic, underline, strikethrough, blink, combinations)
+/// - **`.colors`**: Colors (red, green, blue, etc.) and backgrounds (onRed, onGreen, etc.)
+/// - **`.formatting`**: Layout (box, header, separator, alignment, lists, quotes, code blocks)
+/// - **`.debug`**: Development tools (debugPrint, variable inspection, performance, memory, network)
+///
+/// ## Advanced Features
+///
+/// ```dart
+/// // Rainbow text effect
+/// "Rainbow text!".colors.rainbow();
+///
+/// // Complex formatting
+/// "Important Title".formatting.header();
+/// "Boxed content".formatting.box();
+/// "Item 1".formatting.bullet();
+/// "Step 1".formatting.numbered(1);
+///
+/// // Development utilities
+/// "userName".debug.variable("john_doe");
+/// "API Response".debug.inspect();
+/// "Query took 150ms".debug.benchmark();
+/// ```
+///
+/// For complete documentation and examples, visit: https://pub.dev/packages/pretty_print
 library;
 
 /// Core library for the pretty_print package
@@ -49,8 +109,9 @@ export 'src/enums/text_styles.dart';
 export 'src/consts.dart';
 
 /// Extensions for string methods organized by category
-export 'src/extensions/string_logging_ext.dart';
-export 'src/extensions/string_styling_ext.dart';
-export 'src/extensions/string_colors_ext.dart';
-export 'src/extensions/string_formatting_ext.dart';
-export 'src/extensions/string_debug_ext.dart';
+export 'src/pretty_print_ext.base.dart';
+export 'src/extensions/logging_ext.dart' hide LoggingGroup;
+export 'src/extensions/styling_ext.dart' hide StylingGroup;
+export 'src/extensions/colors_ext.dart' hide ColorsGroup;
+export 'src/extensions/formatting_ext.dart' hide FormattingGroup;
+export 'src/extensions/debug_ext.dart' hide DebugGroup;

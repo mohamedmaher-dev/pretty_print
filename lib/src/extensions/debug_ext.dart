@@ -11,12 +11,16 @@ import '../../pretty_print.dart';
 /// import 'package:pretty_print/pretty_print.dart';
 ///
 /// // Debugging methods
-/// "Variable value".debugPrint();
-/// "Function called".stackTrace();
-/// "API Response".inspect();
-/// "Performance metric".benchmark();
+/// "Variable value".debug.debugPrint();
+/// "Function called".debug.stackTrace();
+/// "API Response".debug.inspect();
+/// "Performance metric".debug.benchmark();
 /// ```
-extension StringDebugExt on String {
+class DebugGroup implements PrettyPrintExtBase {
+  @override
+  final String value;
+  const DebugGroup(this.value);
+
   /// Prints the string with debug information including timestamp.
   ///
   /// Example usage:
@@ -26,7 +30,7 @@ extension StringDebugExt on String {
   void debugPrint() {
     final timestamp = DateTime.now().toString().substring(11, 23);
     PrettyPrint.log(
-      "[$timestamp] 🐛 DEBUG: $this",
+      "[$timestamp] 🐛 DEBUG: $value",
       textColor: PrintColor.magenta,
     );
   }
@@ -39,7 +43,7 @@ extension StringDebugExt on String {
   /// ```
   void todo() {
     PrettyPrint.log(
-      "📝 TODO: $this",
+      "📝 TODO: $value",
       textColor: PrintColor.yellow,
       textWeight: TextWeight.bold,
     );
@@ -53,7 +57,7 @@ extension StringDebugExt on String {
   /// ```
   void fixme() {
     PrettyPrint.log(
-      "🔧 FIXME: $this",
+      "🔧 FIXME: $value",
       textColor: PrintColor.red,
       textWeight: TextWeight.bold,
     );
@@ -67,7 +71,7 @@ extension StringDebugExt on String {
   /// ```
   void note() {
     PrettyPrint.log(
-      "📌 NOTE: $this",
+      "📌 NOTE: $value",
       textColor: PrintColor.cyan,
       textWeight: TextWeight.bold,
     );
@@ -86,7 +90,7 @@ extension StringDebugExt on String {
       backColor: PrintColor.blue,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log("  $this", textColor: PrintColor.blue);
+    PrettyPrint.log("  $value", textColor: PrintColor.blue);
   }
 
   /// Prints the string as a stack trace or function call indicator.
@@ -97,7 +101,7 @@ extension StringDebugExt on String {
   /// ```
   void stackTrace() {
     PrettyPrint.log(
-      "📚 STACK: $this",
+      "📚 STACK: $value",
       textColor: PrintColor.white,
       textBlink: TextBlink.semiOpacity,
     );
@@ -111,7 +115,7 @@ extension StringDebugExt on String {
   /// ```
   void benchmark() {
     PrettyPrint.log(
-      "⏱️ PERF: $this",
+      "⏱️ PERF: $value",
       textColor: PrintColor.yellow,
       textWeight: TextWeight.bold,
     );
@@ -124,7 +128,7 @@ extension StringDebugExt on String {
   /// "Memory usage: 256MB".memory();
   /// ```
   void memory() {
-    PrettyPrint.log("💾 MEMORY: $this", textColor: PrintColor.cyan);
+    PrettyPrint.log("💾 MEMORY: $value", textColor: PrintColor.cyan);
   }
 
   /// Prints the string as a network activity indicator.
@@ -134,7 +138,7 @@ extension StringDebugExt on String {
   /// "HTTP GET /api/users".network();
   /// ```
   void network() {
-    PrettyPrint.log("🌐 NETWORK: $this", textColor: PrintColor.blue);
+    PrettyPrint.log("🌐 NETWORK: $value", textColor: PrintColor.blue);
   }
 
   /// Prints the string as a database activity indicator.
@@ -144,7 +148,7 @@ extension StringDebugExt on String {
   /// "SELECT * FROM users WHERE active = true".database();
   /// ```
   void database() {
-    PrettyPrint.log("🗄️ DB: $this", textColor: PrintColor.green);
+    PrettyPrint.log("🗄️ DB: $value", textColor: PrintColor.green);
   }
 
   /// Prints the string as a security-related message.
@@ -155,7 +159,7 @@ extension StringDebugExt on String {
   /// ```
   void security() {
     PrettyPrint.log(
-      "🔒 SECURITY: $this",
+      "🔒 SECURITY: $value",
       textColor: PrintColor.red,
       textWeight: TextWeight.bold,
     );
@@ -168,7 +172,7 @@ extension StringDebugExt on String {
   /// "Loading configuration from config.yaml".config();
   /// ```
   void config() {
-    PrettyPrint.log("⚙️ CONFIG: $this", textColor: PrintColor.magenta);
+    PrettyPrint.log("⚙️ CONFIG: $value", textColor: PrintColor.magenta);
   }
 
   /// Prints the string with variable name and value formatting.
@@ -177,8 +181,8 @@ extension StringDebugExt on String {
   /// ```dart
   /// "userName".variable("john_doe");
   /// ```
-  void variable(dynamic value) {
-    PrettyPrint.log("🔢 $this = $value", textColor: PrintColor.cyan);
+  void variable(dynamic variableValue) {
+    PrettyPrint.log("🔢 $value = $variableValue", textColor: PrintColor.cyan);
   }
 
   /// Prints the string as an assertion message.
@@ -189,7 +193,7 @@ extension StringDebugExt on String {
   /// ```
   void assertion() {
     PrettyPrint.log(
-      "✅ ASSERT: $this",
+      "✅ ASSERT: $value",
       textColor: PrintColor.green,
       textWeight: TextWeight.bold,
     );
@@ -203,7 +207,7 @@ extension StringDebugExt on String {
   /// ```
   void deprecated() {
     PrettyPrint.log(
-      "⚠️ DEPRECATED: $this",
+      "⚠️ DEPRECATED: $value",
       textColor: PrintColor.yellow,
       textThroughLine: TextThroughLine.lineThrough,
     );
@@ -217,7 +221,7 @@ extension StringDebugExt on String {
   /// ```
   void experimental() {
     PrettyPrint.log(
-      "🧪 EXPERIMENTAL: $this",
+      "🧪 EXPERIMENTAL: $value",
       textColor: PrintColor.magenta,
       textBlink: TextBlink.slowBlink,
     );

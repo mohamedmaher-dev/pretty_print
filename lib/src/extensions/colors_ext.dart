@@ -11,97 +11,101 @@ import '../../pretty_print.dart';
 /// import 'package:pretty_print/pretty_print.dart';
 ///
 /// // Text colors
-/// "Red text".red();
-/// "Green text".green();
-/// "Blue text".blue();
+/// "Red text".colors.red();
+/// "Green text".colors.green();
+/// "Blue text".colors.blue();
 ///
 /// // Background colors
-/// "Text on red background".onRed();
-/// "Text on green background".onGreen();
+/// "Text on red background".colors.onRed();
+/// "Text on green background".colors.onGreen();
 /// ```
-extension StringColorsExt on String {
+class ColorsGroup implements PrettyPrintExtBase {
+  @override
+  final String value;
+  const ColorsGroup(this.value);
+
   // Text color methods
 
   /// Prints the string in black text.
   void black() {
-    PrettyPrint.log(this, textColor: PrintColor.black);
+    PrettyPrint.log(value, textColor: PrintColor.black);
   }
 
   /// Prints the string in red text.
   void red() {
-    PrettyPrint.log(this, textColor: PrintColor.red);
+    PrettyPrint.log(value, textColor: PrintColor.red);
   }
 
   /// Prints the string in green text.
   void green() {
-    PrettyPrint.log(this, textColor: PrintColor.green);
+    PrettyPrint.log(value, textColor: PrintColor.green);
   }
 
   /// Prints the string in yellow text.
   void yellow() {
-    PrettyPrint.log(this, textColor: PrintColor.yellow);
+    PrettyPrint.log(value, textColor: PrintColor.yellow);
   }
 
   /// Prints the string in blue text.
   void blue() {
-    PrettyPrint.log(this, textColor: PrintColor.blue);
+    PrettyPrint.log(value, textColor: PrintColor.blue);
   }
 
   /// Prints the string in magenta text.
   void magenta() {
-    PrettyPrint.log(this, textColor: PrintColor.magenta);
+    PrettyPrint.log(value, textColor: PrintColor.magenta);
   }
 
   /// Prints the string in cyan text.
   void cyan() {
-    PrettyPrint.log(this, textColor: PrintColor.cyan);
+    PrettyPrint.log(value, textColor: PrintColor.cyan);
   }
 
   /// Prints the string in white text.
   void white() {
-    PrettyPrint.log(this, textColor: PrintColor.white);
+    PrettyPrint.log(value, textColor: PrintColor.white);
   }
 
   // Background color methods
 
   /// Prints the string with black background.
   void onBlack([PrintColor textColor = PrintColor.white]) {
-    PrettyPrint.log(this, backColor: PrintColor.black, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.black, textColor: textColor);
   }
 
   /// Prints the string with red background.
   void onRed([PrintColor textColor = PrintColor.white]) {
-    PrettyPrint.log(this, backColor: PrintColor.red, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.red, textColor: textColor);
   }
 
   /// Prints the string with green background.
   void onGreen([PrintColor textColor = PrintColor.white]) {
-    PrettyPrint.log(this, backColor: PrintColor.green, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.green, textColor: textColor);
   }
 
   /// Prints the string with yellow background.
   void onYellow([PrintColor textColor = PrintColor.black]) {
-    PrettyPrint.log(this, backColor: PrintColor.yellow, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.yellow, textColor: textColor);
   }
 
   /// Prints the string with blue background.
   void onBlue([PrintColor textColor = PrintColor.white]) {
-    PrettyPrint.log(this, backColor: PrintColor.blue, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.blue, textColor: textColor);
   }
 
   /// Prints the string with magenta background.
   void onMagenta([PrintColor textColor = PrintColor.white]) {
-    PrettyPrint.log(this, backColor: PrintColor.magenta, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.magenta, textColor: textColor);
   }
 
   /// Prints the string with cyan background.
   void onCyan([PrintColor textColor = PrintColor.black]) {
-    PrettyPrint.log(this, backColor: PrintColor.cyan, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.cyan, textColor: textColor);
   }
 
   /// Prints the string with white background.
   void onWhite([PrintColor textColor = PrintColor.black]) {
-    PrettyPrint.log(this, backColor: PrintColor.white, textColor: textColor);
+    PrettyPrint.log(value, backColor: PrintColor.white, textColor: textColor);
   }
 
   // Combined color and styling methods
@@ -109,7 +113,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold red text.
   void boldRed() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.red,
       textWeight: TextWeight.bold,
     );
@@ -118,7 +122,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold green text.
   void boldGreen() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.green,
       textWeight: TextWeight.bold,
     );
@@ -127,7 +131,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold blue text.
   void boldBlue() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.blue,
       textWeight: TextWeight.bold,
     );
@@ -136,7 +140,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold yellow text.
   void boldYellow() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.yellow,
       textWeight: TextWeight.bold,
     );
@@ -145,7 +149,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold magenta text.
   void boldMagenta() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.magenta,
       textWeight: TextWeight.bold,
     );
@@ -154,7 +158,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold cyan text.
   void boldCyan() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.cyan,
       textWeight: TextWeight.bold,
     );
@@ -163,7 +167,7 @@ extension StringColorsExt on String {
   /// Prints the string in bold white text.
   void boldWhite() {
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.white,
       textWeight: TextWeight.bold,
     );
@@ -183,8 +187,8 @@ extension StringColorsExt on String {
       PrintColor.magenta,
     ];
 
-    for (int i = 0; i < length; i++) {
-      final char = this[i];
+    for (int i = 0; i < value.length; i++) {
+      final char = value[i];
       final color = colors[i % colors.length];
       PrettyPrint.log(char, textColor: color);
     }

@@ -5,6 +5,61 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-10-04
+
+### 🚀 NEW FEATURES
+
+- **Grouped Extension API**: Complete redesign of string extension methods into logical groups
+
+  - `.logging` - Status logging methods (successLog, errorLog, infoLog, warningLog, etc.)
+  - `.styling` - Text styling methods (bold, italic, underline, lineThrough, etc.)
+  - `.colors` - Color methods for text and backgrounds (red, green, onBlue, etc.)
+  - `.formatting` - Layout and formatting methods (box, header, separator, alignment, etc.)
+  - `.debug` - Development tools (debugPrint, variable, benchmark, memory, etc.)
+
+- **Enhanced IDE Experience**: Better autocomplete and method discoverability through grouped organization
+- **Improved API Design**: More intuitive and organized method access pattern
+- **Comprehensive Documentation**: Extensive documentation with examples for all extension groups
+
+### 🎨 IMPROVEMENTS
+
+- **Better Organization**: Methods are now logically grouped by functionality
+- **Enhanced Discoverability**: IDE autocomplete shows relevant methods for each category
+- **Cleaner API**: Reduced namespace pollution with organized method groups
+- **Maintainability**: Each group is in a separate file for easier maintenance
+
+### 📚 DOCUMENTATION
+
+- **Updated Library Documentation**: Complete rewrite of main library documentation
+- **Grouped Extension Examples**: Comprehensive examples for all extension groups
+- **Architecture Documentation**: Detailed explanation of the grouped extension system
+- **Usage Patterns**: Clear guidance on how to use the new API effectively
+
+### 🔧 TECHNICAL CHANGES
+
+- **New Base Class System**: `PrettyPrintExtBase` for consistent extension group architecture
+- **Organized File Structure**: Extension methods split into logical group files
+- **Enhanced Type Safety**: Better type definitions and interfaces
+- **Improved Example**: Updated example file showcasing all grouped extension features
+
+### 📋 MIGRATION GUIDE
+
+**Old API :**
+
+```dart
+"text".successLog();  // Direct extension method
+"text".bold();        // Direct extension method
+```
+
+**New API (recommended):**
+
+```dart
+"text".logging.successLog();  // Grouped extension method
+"text".styling.bold();        // Grouped extension method
+```
+
+Both APIs work side by side, but the grouped API is recommended for better organization and discoverability.
+
 ## [2.0.2] - 2025-10-04
 
 ### 🎨 IMPROVEMENTS
@@ -158,6 +213,7 @@ PrettyPrint.error("Something went wrong");
 
 This initial release provides a complete, production-ready solution for terminal text formatting in Dart applications.
 
+[2.1.0]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.1.0
 [2.0.2]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.0.2
 [2.0.1]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.0.1
 [2.0.0]: https://github.com/mohamedmaher-dev/pretty_print/releases/tag/v2.0.0

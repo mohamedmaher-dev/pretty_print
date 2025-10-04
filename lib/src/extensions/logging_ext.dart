@@ -22,7 +22,11 @@ import '../../pretty_print.dart';
 /// "Critical system failure".criticalLog();
 /// "Trace: entering function".traceLog();
 /// ```
-extension StringLoggingExt on String {
+class LoggingGroup implements PrettyPrintExtBase {
+  @override
+  final String value;
+  const LoggingGroup(this.value);
+
   /// Prints a success message with green background and white text.
   ///
   /// This is a convenience extension method for displaying success status messages.
@@ -33,6 +37,7 @@ extension StringLoggingExt on String {
   /// ```dart
   /// "Operation completed successfully!".successLog();
   /// ```
+
   void successLog() {
     PrettyPrint.log(
       " ✓ SUCCESS ",
@@ -40,7 +45,7 @@ extension StringLoggingExt on String {
       backColor: PrintColor.green,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.green);
+    PrettyPrint.log(value, textColor: PrintColor.green);
   }
 
   /// Prints an info message with blue background and white text.
@@ -60,7 +65,7 @@ extension StringLoggingExt on String {
       backColor: PrintColor.blue,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.blue);
+    PrettyPrint.log(value, textColor: PrintColor.blue);
   }
 
   /// Prints a warning message with yellow background and black text.
@@ -80,7 +85,7 @@ extension StringLoggingExt on String {
       backColor: PrintColor.yellow,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.yellow);
+    PrettyPrint.log(value, textColor: PrintColor.yellow);
   }
 
   /// Prints an error message with red background and white text.
@@ -100,7 +105,7 @@ extension StringLoggingExt on String {
       backColor: PrintColor.red,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.red);
+    PrettyPrint.log(value, textColor: PrintColor.red);
   }
 
   /// Prints a debug message with magenta background and white text.
@@ -120,7 +125,7 @@ extension StringLoggingExt on String {
       backColor: PrintColor.magenta,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.magenta);
+    PrettyPrint.log(value, textColor: PrintColor.magenta);
   }
 
   /// Prints a critical message with red background and blinking text.
@@ -141,7 +146,7 @@ extension StringLoggingExt on String {
       textBlink: TextBlink.slowBlink,
     );
     PrettyPrint.log(
-      this,
+      value,
       textColor: PrintColor.red,
       textWeight: TextWeight.bold,
     );
@@ -163,7 +168,7 @@ extension StringLoggingExt on String {
       backColor: PrintColor.cyan,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.cyan);
+    PrettyPrint.log(value, textColor: PrintColor.cyan);
   }
 
   /// Prints a performance message with yellow text.
@@ -182,6 +187,6 @@ extension StringLoggingExt on String {
       backColor: PrintColor.yellow,
       textWeight: TextWeight.bold,
     );
-    PrettyPrint.log(this, textColor: PrintColor.yellow);
+    PrettyPrint.log(value, textColor: PrintColor.yellow);
   }
 }
